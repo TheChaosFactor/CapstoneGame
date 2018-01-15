@@ -22,8 +22,44 @@ public class KeyInput extends KeyAdapter {
 			if (tempObject.getId() == ObjectId.PLAYER) {
 				// Key Events for player
 				
-				if (key == KeyEvent.VK_W) {
-					// Do stuff
+				float xPos = tempObject.getX();
+				float yPos = tempObject.getY();
+				
+				
+				
+				if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
+					if (i > 25){
+						if (handler.object.get(i - 25).getId() == ObjectId.PATH) {
+							handler.object.get(i - 25).setId(ObjectId.PLAYER);
+							tempObject.setId(ObjectId.PATH);
+						}
+					}
+				}
+				else if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
+					if (i < 414) {
+						if (handler.object.get(i + 25).getId() == ObjectId.PATH) {
+							handler.object.get(i + 25).setId(ObjectId.PLAYER);
+							tempObject.setId(ObjectId.PATH);
+							key = KeyEvent.VK_STOP;
+						}
+					}
+				}
+				else if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
+					if (i % 25 > 1) {
+						if (handler.object.get(i - 1).getId() == ObjectId.PATH) {
+							handler.object.get(i - 1).setId(ObjectId.PLAYER);
+							tempObject.setId(ObjectId.PATH);
+						}
+					}
+				}
+				else if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
+					if (i % 25 < 24) {
+						if (handler.object.get(i + 1).getId() == ObjectId.PATH){
+							handler.object.get(i + 1).setId(ObjectId.PLAYER);
+							tempObject.setId(ObjectId.PATH);
+							key = KeyEvent.VK_STOP;
+						}
+					}
 				}
 			}
 		}
