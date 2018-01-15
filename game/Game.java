@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import framework.KeyInput;
 import framework.ObjectId;
 
 public class Game extends Canvas implements Runnable {
@@ -15,10 +16,10 @@ public class Game extends Canvas implements Runnable {
 	private Handler handler;
 
 	public Game() {
-		new GameWindow(800, 640, "The A-Maze-Ing Game", this);
-		
 		handler = new Handler();
+		this.addKeyListener(new KeyInput(handler));
 		
+		new GameWindow(800, 640, "The A-Maze-Ing Game", this);
 	}
 	
 	private void init() {
@@ -49,6 +50,7 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 
+	@Override
 	public void run() {
 		long lastTime = System.nanoTime();
 		long lastTimer = System.currentTimeMillis();
@@ -83,8 +85,7 @@ public class Game extends Canvas implements Runnable {
 
 			if (System.currentTimeMillis() - lastTimer >= 1000) {
 				lastTimer += 1000;
-				System.out.println(ticks + " ticks , " + frames
-						+ " frames per second");
+				//System.out.println(ticks + " ticks , " + frames + " frames per second");
 				frames = 0;
 				ticks = 0;
 			}

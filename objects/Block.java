@@ -15,15 +15,18 @@ public class Block extends GameObject{
 	}
 
 	
+	@Override
 	public void tick(LinkedList<GameObject> object) {
 		
 	}
 
+	@Override
 	public void render(Graphics g, Color color) {
 		g.setColor(color);
 		g.fillRect((int)x, (int)y, 32, 32);
 	}
 	
+	@Override
 	public Rectangle getBounds() {
 		return new Rectangle((int)x, (int)y, 32, 32);
 	}
