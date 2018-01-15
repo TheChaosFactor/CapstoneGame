@@ -13,6 +13,7 @@ public class KeyInput extends KeyAdapter {
 		this.handler = handler;
 	}
 
+	@Override
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 
@@ -20,55 +21,51 @@ public class KeyInput extends KeyAdapter {
 			GameObject tempObject = handler.object.get(i);
 
 			if (tempObject.getId() == ObjectId.PLAYER) {
-				// Key Events for player
-				
-				float xPos = tempObject.getX();
-				float yPos = tempObject.getY();
-				
-				
-				
+
+				// If the user presses 'W' or UP on the keyboard
 				if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
-					if (i > 25){
+
+					if (i > 25) { // Makes sure that were are not on the top row
+
 						if (handler.object.get(i - 25).getId() == ObjectId.PATH) {
+							// If the block above the player is a path then swap position
+							
 							handler.object.get(i - 25).setId(ObjectId.PLAYER);
 							tempObject.setId(ObjectId.PATH);
 						}
 					}
-				}
-				else if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
-					if (i < 414) {
+				} else if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
+					if (i < 425) {
 						if (handler.object.get(i + 25).getId() == ObjectId.PATH) {
 							handler.object.get(i + 25).setId(ObjectId.PLAYER);
 							tempObject.setId(ObjectId.PATH);
-							key = KeyEvent.VK_STOP;
+							key = 22;
 						}
 					}
-				}
-				else if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
+				} else if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
 					if (i % 25 > 1) {
 						if (handler.object.get(i - 1).getId() == ObjectId.PATH) {
 							handler.object.get(i - 1).setId(ObjectId.PLAYER);
 							tempObject.setId(ObjectId.PATH);
 						}
 					}
-				}
-				else if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
+				} else if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
 					if (i % 25 < 24) {
-						if (handler.object.get(i + 1).getId() == ObjectId.PATH){
+						if (handler.object.get(i + 1).getId() == ObjectId.PATH) {
 							handler.object.get(i + 1).setId(ObjectId.PLAYER);
 							tempObject.setId(ObjectId.PATH);
-							key = KeyEvent.VK_STOP;
+							key = 34;
 						}
 					}
-				}
-			}
-		}
+				} // end if (which key pressed) statement
+			} // end if (id == player) statement
+		} // End for loop
 
-		System.out.println(key);
-	}
+	} // End keyPressed method
 
+	@Override
 	public void keyReleased(KeyEvent e) {
-		int key = e.getKeyCode();
+		// Do nothing here
 	}
 
 }

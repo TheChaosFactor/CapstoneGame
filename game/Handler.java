@@ -34,7 +34,7 @@ public class Handler {
 			if (tempObject.getId() == ObjectId.PATH)
 				color = new Color(220, 177, 45); // Brown
 			if (tempObject.getId() == ObjectId.GEM)
-				color = new Color(19, 230, 255);
+				color = new Color(19, 230, 255); // Dark Cyan
 			if (tempObject.getId() == ObjectId.VOID)
 				color = Color.BLACK; // Black
 
