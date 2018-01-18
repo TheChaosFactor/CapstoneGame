@@ -3,6 +3,7 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.LinkedList;
+
 import framework.GameObject;
 import framework.ObjectId;
 import objects.Block;
@@ -34,7 +35,7 @@ public class Handler {
 			if (tempObject.getId() == ObjectId.PATH)
 				color = new Color(220, 177, 45); // Brown
 			if (tempObject.getId() == ObjectId.GEM)
-				color = new Color(19, 230, 255); // Dark Cyan
+				color = new Color(19, 230, 255); // Cyan
 			if (tempObject.getId() == ObjectId.VOID)
 				color = Color.BLACK; // Black
 
@@ -52,6 +53,7 @@ public class Handler {
 		this.object.remove(object);
 	}
 
+
 	public void createLevel() {
 		for (int yy = 0; yy < Game.HEIGHT; yy += 32) {
 			for (int xx = 0; xx < Game.WIDTH - 32; xx += 32) {
@@ -66,16 +68,14 @@ public class Handler {
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 2 << 5) {
+				} else if (yy == 2 << 5) {
 					if (xx == 4 << 5 || xx == 12 << 5 || xx == 16 << 5 || xx == 21 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 0 || xx == 24 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 3 << 5) {
+				} else if (yy == 3 << 5) {
 					if (xx == 32 || xx == 2 << 5 || xx == 3 << 5 || xx == 4 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 6 << 5 || xx == 7 << 5 || xx == 8 << 5 || xx == 9 << 5)
@@ -86,20 +86,17 @@ public class Handler {
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 4 << 5) {
+				} else if (yy == 4 << 5) {
 					if (xx == 4 << 5 || xx == 6 << 5 || xx == 9 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
-					else if (xx == 12 << 5 || xx == 13 << 5 || xx == 14 << 5 || xx == 15 << 5 ||
-							xx == 16 << 5 || xx == 17 << 5 || xx == 18 << 5 || xx == 19 << 5 ||
-							xx == 20 << 5 || xx == 21 << 5)
+					else if (xx == 12 << 5 || xx == 13 << 5 || xx == 14 << 5 || xx == 15 << 5 || xx == 16 << 5
+							|| xx == 17 << 5 || xx == 18 << 5 || xx == 19 << 5 || xx == 20 << 5 || xx == 21 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 0 || xx == 24 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 5 << 5) {
+				} else if (yy == 5 << 5) {
 					if (xx == 1 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.GEM));
 					else if (xx == 2 << 5 || xx == 3 << 5 || xx == 4 << 5 || xx == 5 << 5 || xx == 6 << 5)
@@ -110,39 +107,34 @@ public class Handler {
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 6 <<  5) {
-					if (xx == 6 << 5 || xx == 9 << 5 || xx == 10 << 5 || xx == 11 << 5 || xx == 12 << 5 ||
-							xx == 13 << 5 || xx == 14 << 5 || xx == 15 << 5 || xx == 18 << 5)
+				} else if (yy == 6 << 5) {
+					if (xx == 6 << 5 || xx == 9 << 5 || xx == 10 << 5 || xx == 11 << 5 || xx == 12 << 5 || xx == 13 << 5
+							|| xx == 14 << 5 || xx == 15 << 5 || xx == 18 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 0 || xx == 24 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 7 << 5) {
-					if (xx == 3 << 5 || xx == 4 << 5 || xx == 5 << 5 || xx == 6 << 5 || xx == 9 << 5||
-							xx == 12 << 5)
+				} else if (yy == 7 << 5) {
+					if (xx == 3 << 5 || xx == 4 << 5 || xx == 5 << 5 || xx == 6 << 5 || xx == 9 << 5 || xx == 12 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
-					else if (xx == 15 << 5 || xx == 16 << 5 || xx == 17 << 5 || xx == 18 << 5 ||
-							xx == 19 << 5 || xx == 20 << 5 || xx == 21 << 5)
+					else if (xx == 15 << 5 || xx == 16 << 5 || xx == 17 << 5 || xx == 18 << 5 || xx == 19 << 5
+							|| xx == 20 << 5 || xx == 21 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 0 || xx == 24 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 8 << 5) {
+				} else if (yy == 8 << 5) {
 					if (xx == 3 << 5 || xx == 9 << 5 || xx == 12 << 5 || xx == 15 << 5 || xx == 21 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 0 || xx == 24 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 9 << 5) {
-					if (xx == 3 << 5 || xx == 8 << 5 || xx == 9 << 5 || xx == 10 << 5 || xx == 11 << 5 ||
-							xx == 13 << 5 || xx == 14 << 5 || xx == 15 << 5 || xx == 21 << 5)
+				} else if (yy == 9 << 5) {
+					if (xx == 3 << 5 || xx == 8 << 5 || xx == 9 << 5 || xx == 10 << 5 || xx == 11 << 5 || xx == 13 << 5
+							|| xx == 14 << 5 || xx == 15 << 5 || xx == 21 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 12 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PLAYER));
@@ -150,20 +142,17 @@ public class Handler {
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 10 << 5) {
-					if (xx == 3 << 5 || xx == 4 << 5 || xx == 5 << 5 || xx == 6 << 5 || xx == 7 << 5 ||
-							xx == 8 << 5 || xx == 12 << 5 || xx == 15 << 5 || xx == 21 << 5 ||
-							xx == 22 << 5 || xx == 23 << 5)
+				} else if (yy == 10 << 5) {
+					if (xx == 3 << 5 || xx == 4 << 5 || xx == 5 << 5 || xx == 6 << 5 || xx == 7 << 5 || xx == 8 << 5
+							|| xx == 12 << 5 || xx == 15 << 5 || xx == 21 << 5 || xx == 22 << 5 || xx == 23 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 0 || xx == 24 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 11 << 5) {
-					if (xx == 3 << 5 || xx == 12 << 5 || xx == 15 << 5 || xx == 16 << 5 || xx == 17 << 5 ||
-							xx == 18 << 5 || xx == 19 << 5 || xx == 20 << 5 || xx == 21 << 5)
+				} else if (yy == 11 << 5) {
+					if (xx == 3 << 5 || xx == 12 << 5 || xx == 15 << 5 || xx == 16 << 5 || xx == 17 << 5
+							|| xx == 18 << 5 || xx == 19 << 5 || xx == 20 << 5 || xx == 21 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 7 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.GEM));
@@ -171,39 +160,34 @@ public class Handler {
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 12 << 5) {
-					if (xx == 3 << 5 || xx == 4 << 5 || xx == 5 << 5 || xx == 7 << 5 || xx == 9 << 5 ||
-							xx == 10 << 5 || xx == 11 << 5 || xx == 12 << 5 || xx == 15 << 5 ||
-							xx == 21 << 5)
+				} else if (yy == 12 << 5) {
+					if (xx == 3 << 5 || xx == 4 << 5 || xx == 5 << 5 || xx == 7 << 5 || xx == 9 << 5 || xx == 10 << 5
+							|| xx == 11 << 5 || xx == 12 << 5 || xx == 15 << 5 || xx == 21 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 0 || xx == 24 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 13 << 5) {
-					if (xx == 5 << 5 || xx == 6 << 5 || xx == 7 << 5 || xx == 8 << 5 || xx == 9 << 5 ||
-							xx == 14 << 5 || xx == 15 << 5 || xx == 16 << 5 || xx == 17 << 5 ||
-							xx == 18 << 5 || xx == 19 << 5 || xx == 20 << 5 || xx == 21 << 5)
+				} else if (yy == 13 << 5) {
+					if (xx == 5 << 5 || xx == 6 << 5 || xx == 7 << 5 || xx == 8 << 5 || xx == 9 << 5 || xx == 14 << 5
+							|| xx == 15 << 5 || xx == 16 << 5 || xx == 17 << 5 || xx == 18 << 5 || xx == 19 << 5
+							|| xx == 20 << 5 || xx == 21 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 0 || xx == 24 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 14 << 5) {
-					if (xx == 3 << 5 || xx == 4 << 5 || xx == 5 << 5 || xx == 9 << 5 || xx == 14 << 5 ||
-							xx == 17 << 5 || xx == 20 << 5)
+				} else if (yy == 14 << 5) {
+					if (xx == 3 << 5 || xx == 4 << 5 || xx == 5 << 5 || xx == 9 << 5 || xx == 14 << 5 || xx == 17 << 5
+							|| xx == 20 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 0 || xx == 24 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 15 << 5) {
-					if (xx == 3 << 5 || xx == 5 << 5 || xx == 9 << 5 || xx == 10 << 5 || xx == 11 << 5 ||
-							xx == 12 << 5 || xx == 13 << 5 || xx == 14 << 5 || xx == 20 << 5)
+				} else if (yy == 15 << 5) {
+					if (xx == 3 << 5 || xx == 5 << 5 || xx == 9 << 5 || xx == 10 << 5 || xx == 11 << 5 || xx == 12 << 5
+							|| xx == 13 << 5 || xx == 14 << 5 || xx == 20 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 17 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.GEM));
@@ -211,27 +195,24 @@ public class Handler {
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 16 << 5) {
-					if (xx == 1 << 5 || xx == 2 << 5 || xx == 3 << 5 || xx == 4 << 5 || xx == 5 << 5 ||
-							xx == 9 << 5 || xx == 11 << 5 || xx == 14 << 5 || xx == 15 << 5 ||
-							xx == 16 << 5 || xx == 17 << 5 || xx == 18 << 5 || xx == 19 << 5 ||
-							xx == 20 << 5 || xx == 21 << 5 || xx == 22 << 5 || xx == 23 << 5)
+				} else if (yy == 16 << 5) {
+					if (xx == 1 << 5 || xx == 2 << 5 || xx == 3 << 5 || xx == 4 << 5 || xx == 5 << 5 || xx == 9 << 5
+							|| xx == 11 << 5 || xx == 14 << 5 || xx == 15 << 5 || xx == 16 << 5 || xx == 17 << 5
+							|| xx == 18 << 5 || xx == 19 << 5 || xx == 20 << 5 || xx == 21 << 5 || xx == 22 << 5
+							|| xx == 23 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 0 || xx == 24 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 17 << 5) {
+				} else if (yy == 17 << 5) {
 					if (xx == 5 << 5 || xx == 9 << 5 || xx == 11 << 5 || xx == 14 << 5 || xx == 20 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 0 || xx == 24 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.VOID));
 					else
 						this.addObject(new Block(xx, yy, ObjectId.WALL));
-				}
-				else if (yy == 18 << 5) {
+				} else if (yy == 18 << 5) {
 					if (xx == 5 << 5 || xx == 9 << 5 || xx == 14 << 5 || xx == 20 << 5)
 						this.addObject(new Block(xx, yy, ObjectId.PATH));
 					else if (xx == 11 << 5)

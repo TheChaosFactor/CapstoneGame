@@ -14,7 +14,9 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	public static int WIDTH, HEIGHT;
 	private Handler handler;
-
+	public static int gemCount = 0;
+	public static boolean canExit = false;
+	
 	public Game() {
 		handler = new Handler();
 		this.addKeyListener(new KeyInput(handler));

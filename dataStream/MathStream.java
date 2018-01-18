@@ -4,8 +4,6 @@ public class MathStream {
 
 	private String probArray[] = new String[5];
 	private int answerArray[] = new int[5];
-	//private Handler handler;
-	
 	
 	public void initializeArrays() {
 		probArray[0] = "8 + (-12) = ?";
