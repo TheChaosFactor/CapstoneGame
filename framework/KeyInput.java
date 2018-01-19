@@ -32,7 +32,7 @@ public class KeyInput implements ActionListener, KeyListener {
 	private JButton submitBtn = new JButton("Submit Answer!");
 	private int currentPos = 0;
 	private String whichDirection = "";
-
+	
 	public KeyInput(Handler handler) {
 		this.handler = handler;
 
@@ -45,14 +45,14 @@ public class KeyInput implements ActionListener, KeyListener {
 		frame.setSize(dime);
 		frame.setMinimumSize(dime);
 		frame.setMaximumSize(dime);
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); // Change to DO_NOTHING_ON_CLOSE
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 	}
 
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		seed = rand.nextInt(5);
+		seed = rand.nextInt(15);
 
 		for (int i = 0; i < handler.object.size(); i++) {
 			GameObject tempObject = handler.object.get(i);
@@ -82,6 +82,28 @@ public class KeyInput implements ActionListener, KeyListener {
 							panel.add(submitBtn);
 							frame.pack();
 							frame.setVisible(true);
+						} else if (handler.object.get(i - 25).getId() == ObjectId.EXIT) {
+							// If the block above the player is the exit then
+							if (Game.canExit) {
+								// If the requirement for the Gems has been reached
+								JLabel temp = new JLabel("");
+								JLabel exitLbl = new JLabel("");
+								panel.remove(answerBox);
+								panel.remove(submitBtn);
+								temp.setText("You've collected all the Gems and made it to the exit!");
+								exitLbl.setText("You can now close this window to exit the game");
+								frame.setTitle("You win!");
+								label.setText("Congratulations!");
+								exitLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
+								label.setAlignmentX(Component.CENTER_ALIGNMENT);
+								temp.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+								panel.add(label);
+								panel.add(temp);
+								panel.add(exitLbl);
+								frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+								frame.setVisible(true);
+							}
 						}
 					}
 				} else if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
@@ -134,7 +156,7 @@ public class KeyInput implements ActionListener, KeyListener {
 							label.setText(maths.getProb(seed));
 							label.setAlignmentX(Component.CENTER_ALIGNMENT);
 							currentPos = i;
-							whichDirection = "left";
+							whichDirection = "right";
 							submitBtn.addActionListener(this);
 
 							panel.add(label);
@@ -158,58 +180,51 @@ public class KeyInput implements ActionListener, KeyListener {
 	public void actionPerformed(ActionEvent event) {
 		String answer = null;
 		answer = answerBox.getText();
-		
+
 		if (answer.equals(""))
 			return;
-
+		
 		try {
 			int numAns = Integer.parseInt(answer);
 
 			if (maths.checkAnswer(seed, numAns)) {
 				Game.gemCount++;
 
-				if (Game.gemCount == 5)
+				if (Game.gemCount == 1)
 					Game.canExit = true;
-				
+
 				if (whichDirection.equals("up")) {
 					handler.object.get(currentPos - 25).setId(ObjectId.PLAYER);
 					handler.object.get(currentPos).setId(ObjectId.PATH);
-				}
-				else if (whichDirection.equals("down")) {
+				} else if (whichDirection.equals("down")) {
 					handler.object.get(currentPos + 25).setId(ObjectId.PLAYER);
-					handler.object.get(currentPos).setId(ObjectId.PATH);	
-				}
-				else if (whichDirection.equals("left")) {
+					handler.object.get(currentPos).setId(ObjectId.PATH);
+				} else if (whichDirection.equals("left")) {
 					handler.object.get(currentPos - 1).setId(ObjectId.PLAYER);
 					handler.object.get(currentPos).setId(ObjectId.PATH);
-				}
-				else if (whichDirection.equals("right")) {
+				} else if (whichDirection.equals("right")) {
 					handler.object.get(currentPos + 1).setId(ObjectId.PLAYER);
 					handler.object.get(currentPos).setId(ObjectId.PATH);
+				} else {
+
 				}
-				else {
-					
-				}
-				
+
 				whichDirection = "";
 				answerBox.setText("");
 				submitBtn.removeActionListener(this);
 				frame.setVisible(false);
 			} else {
-			
+
 				if (whichDirection.equals("up")) {
 					randomizeGemLoc(currentPos - 25);
-				}
-				else if (whichDirection.equals("down")) {
+				} else if (whichDirection.equals("down")) {
 					randomizeGemLoc(currentPos + 25);
-				}
-				else if (whichDirection.equals("left")) {
+				} else if (whichDirection.equals("left")) {
 					randomizeGemLoc(currentPos - 1);
-				}
-				else if (whichDirection.equals("right")) {
+				} else if (whichDirection.equals("right")) {
 					randomizeGemLoc(currentPos + 1);
 				}
-				
+
 				whichDirection = "";
 				answerBox.setText("");
 				answerBox.repaint();
@@ -219,6 +234,7 @@ public class KeyInput implements ActionListener, KeyListener {
 		} catch (NumberFormatException e2) {
 			e2.printStackTrace();
 		}
+
 	}
 
 	public void keyTyped(KeyEvent e) {
@@ -229,7 +245,7 @@ public class KeyInput implements ActionListener, KeyListener {
 		int possibleTiles = 0;
 		int otherTiles = 0;
 		int newLoc = 0;
-		
+
 		for (int i = 0; i < handler.object.size(); i++) {
 			GameObject tempObject = handler.object.get(i);
 			if (tempObject.getId() == ObjectId.PATH)
@@ -237,16 +253,16 @@ public class KeyInput implements ActionListener, KeyListener {
 			else
 				otherTiles++;
 		}
-		
+
 		newLoc = rand.nextInt(possibleTiles + otherTiles);
-		
+
 		while (handler.object.get(newLoc).getId() != ObjectId.PATH) {
 			newLoc = rand.nextInt(possibleTiles + otherTiles);
 		}
-		
+
 		handler.object.get(newLoc).setId(ObjectId.GEM);
 		handler.object.get(gemLoc).setId(ObjectId.PATH);
-		
+
 	}
-	
+
 } // End of the KeyInput Class

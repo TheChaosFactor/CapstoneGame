@@ -21,7 +21,7 @@ public class Game extends Canvas implements Runnable {
 		handler = new Handler();
 		this.addKeyListener(new KeyInput(handler));
 		
-		new GameWindow(800, 640, "The A-Maze-Ing Game", this);
+		new GameWindow(800, 640, "The A-Maze-Ing Game! Created By: Harold Carvajal", this);
 	}
 	
 	private void init() {
